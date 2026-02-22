@@ -1,3 +1,4 @@
+import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import { useUsers } from "../../hooks/useUsers";
 
 export default function UserList() {
@@ -17,14 +18,31 @@ export default function UserList() {
 		);
 	}
 	return (
-		<div>
+		<Grid
+			container
+			spacing={{ xs: 2, md: 3 }}
+			columns={{ xs: 4, sm: 8, md: 12 }}
+		>
 			{data?.map((user) => (
-				<div key={user.id}>
-					<h3>{user.name}</h3>
-					<p>{user.email}</p>
-					<img src={user.avatar} alt="" />
-				</div>
+				<Grid key={user.id} size={{ xs: 2, sm: 4, md: 4 }}>
+					<Card sx={{ maxWidth: 345 }}>
+						<CardMedia
+							component="img"
+							alt={user.name}
+							height="140"
+							image={user.avatar}
+						/>
+						<CardContent>
+							<Typography gutterBottom variant="h5" component="div">
+								{user.name}
+							</Typography>
+							<Typography variant="body2" sx={{ color: "text.secondary" }}>
+								{user.email}
+							</Typography>
+						</CardContent>
+					</Card>
+				</Grid>
 			))}
-		</div>
+		</Grid>
 	);
 }
