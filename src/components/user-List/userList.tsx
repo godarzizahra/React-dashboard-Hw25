@@ -1,7 +1,10 @@
 import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
 import { useUsers } from "../../hooks/useUsers";
+import { setSelectedUser } from "../../store/slice/taskSlice";
 
 export default function UserList() {
+	const dispatch = useDispatch();
 	const { data, isLoading, error } = useUsers();
 	if (isLoading) {
 		return (
@@ -25,7 +28,10 @@ export default function UserList() {
 		>
 			{data?.map((user) => (
 				<Grid key={user.id} size={{ xs: 2, sm: 4, md: 4 }}>
-					<Card sx={{ maxWidth: 345 }}>
+					<Card
+						sx={{ maxWidth: 345 }}
+						onClick={() => dispatch(setSelectedUser(user.id))}
+					>
 						<CardMedia
 							component="img"
 							alt={user.name}
