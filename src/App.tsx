@@ -1,5 +1,11 @@
+import UserListPage from "./pages/user-List-page/userListPage";
+
 function App() {
-	return <></>;
+	return (
+		<>
+			<UserListPage />
+		</>
+	);
 }
 
 export default App;
